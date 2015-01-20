@@ -1,0 +1,2 @@
+# maze
+small maze
