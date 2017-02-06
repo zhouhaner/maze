@@ -42,16 +42,16 @@ struct Node *next;
 /*
 *初始化Stack
 */
-void InitStack(Node *Stack)
+void InitStack(Node **Stack)
 {
-Stack=(Node *)malloc(sizeof(Node));
-if(Stack==NULL)
+*Stack=(Node *)malloc(sizeof(Node));
+if(*Stack==NULL)
 {
     printf("分配空间失败\n");
     exit(0);
 }else
 {
-    Stack->next=NULL;
+    (*Stack)->next=NULL;
 }
 }
 /*
@@ -180,7 +180,7 @@ int curx=0,cury=0;
 int count=0;
 int flag=0;
 Node *Stacks=NULL;
-InitStack(Stacks);
+InitStack(&Stacks);
 do{
     if(maze[curx][cury]==9)
     {
@@ -247,6 +247,9 @@ int main()
     printf("\n");
     drawMaze();
     printf("\n show the path ?(y/n)");
+    /* skip newline left by scanf */
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
     fflush(stdin);
     if(toupper(getch())=='Y')
     {
